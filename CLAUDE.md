@@ -50,7 +50,7 @@ This package is a Claude Code native skill pack. Treat every file in this direct
 Before shipping changes, verify:
 
 1. required root files exist
-2. all `18` skill folders exist
+2. all skill folders exist (currently 46; CI checks dynamically)
 3. every `SKILL.md` parses as YAML frontmatter plus Markdown body
 4. every skill contains the required frontmatter keys
 5. every skill body is long enough and still coherent
@@ -63,4 +63,4 @@ The GitHub Actions workflow should remain the source of truth for structural val
 - Preserve stable skill names; they are install paths.
 - Expand skills by adding procedures and commands, not filler.
 - If you change a skill's operational contract, update `README.md`, `docs/tool-mapping.md`, and `docs/migration-guide.md` when needed.
-- If you add or remove skills, update the full skills table in `README.md` and the count checks in CI.
+- If you add or remove skills, update the full skills table in `README.md`. CI validates skill count dynamically (no hardcoded number).

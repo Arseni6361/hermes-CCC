@@ -77,6 +77,18 @@ Claude counts per-session: number of decisions made, artifacts created, problems
 
 **Output:** Per-week averages for decisions, artifacts, and resolution rate (problems solved / open issues ratio).
 
+### 5. Data Hygiene and Confidence Rules
+
+- Skip any session file that is missing the expected `hermes-compress` YAML block and record how many files were excluded.
+- Normalize topic strings by lowercasing, trimming punctuation, and folding obvious singular/plural variants before counting.
+- Prefer explicit evidence from `decisions` and `artifacts_created` over weak inference from prose when assigning project domains.
+- Mark a skill as `inferred` if the file only mentions the skill name indirectly and no `/skill-name` invocation is present.
+- Downgrade trend claims to `low confidence` when fewer than 5 sessions match the selected date range.
+- Report `no sessions matched the filter` instead of fabricating empty charts when `--days <N>` returns zero files.
+- Treat duplicate session paths with identical timestamps as one observation so repeated syncs do not inflate counts.
+- Fall back to `unknown project` when the `project:` field is absent and artifact paths do not provide a clear slug.
+- Separate unresolved carry-over work from newly opened issues so the resolution rate is not overstated.
+
 ---
 
 ## Full Output Structure

@@ -2,7 +2,7 @@
 name: hermes-route
 description: Route Claude Code work by complexity, risk, and tool needs. Use when deciding how much reasoning depth a task needs, whether to read project memory first, whether the task should be decomposed, and whether the work is lightweight, standard, or investigation-heavy.
 version: 0.1.0
-author: OpenAI Codex
+author: hermes-CCC (ported from Hermes Agent by NousResearch)
 license: MIT
 metadata:
   category: orchestration

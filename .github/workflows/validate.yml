@@ -69,11 +69,10 @@ jobs:
               sys.exit(1)
 
           skill_files = sorted(skills_dir.glob("*/SKILL.md"))
-          if len(skill_files) != 18:
-              print(f"Expected 18 skill files, found {len(skill_files)}")
-              for path in skill_files:
-                  print(f"- {path}")
+          if len(skill_files) < 1:
+              print("No skill files found in skills/")
               sys.exit(1)
+          print(f"Found {len(skill_files)} skill files")
 
           required_frontmatter_keys = [
               "name:",

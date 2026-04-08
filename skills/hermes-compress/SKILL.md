@@ -57,6 +57,16 @@ If the file already exists (e.g., from a previous compress run in the same day),
 
 Claude also updates `MEMORY.md` to add an index entry pointing to the new session file.
 
+### Step 3a - Handle Memory Write Failures
+
+- Create the memory directory before writing if it does not already exist.
+- Write the session file first and update `MEMORY.md` second so a partial failure does not lose the summary.
+- If appending fails because an existing session file is malformed, leave the old file untouched and write a new timestamped file instead.
+- If the memory index update fails, report that the session file was written and that index repair is still needed.
+- If the environment is read-only or permission-restricted, skip file writes, tell the user exactly what could not be persisted, and still emit the session-state block.
+- If the conversation is too large to process in one pass, summarize in chunks and merge the six buckets before writing.
+- Never drop explicit user requirements, file paths, commands, or unresolved blockers during fallback processing.
+
 ### Step 4 — Identify What Can Be Dropped
 
 Claude classifies each segment of the conversation as:
